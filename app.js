@@ -13,7 +13,6 @@ function saveNote(event) {
   const content = document.getElementById('noteContent').value.trim();
 
   if(editingNoteId) {
-    // Update existing Note
     const noteIndex = notes.findIndex(note => note.id === editingNoteId)
     notes[noteIndex] = {
       ...notes[noteIndex],
@@ -21,7 +20,6 @@ function saveNote(event) {
       content: content
     }
   } else {
-    // Add New Note with date
     notes.unshift({
       id: generateId(),
       title: title,
@@ -49,7 +47,6 @@ function deleteNote(noteId) {
   renderNotes()
 }
 
-// Renders notes (default: from notes array)
 function renderNotes(noteArray = notes) {
   const notesContainer = document.getElementById('notesContainer');
 
@@ -81,7 +78,6 @@ function renderNotes(noteArray = notes) {
   `).join('')
 }
 
-// Search notes
 function searchNotes() {
   const query = document.getElementById('searchInput').value.toLowerCase()
   const filtered = notes.filter(note =>
@@ -91,7 +87,6 @@ function searchNotes() {
   renderNotes(filtered)
 }
 
-// Filter notes by date
 function filterNotes() {
   const filterValue = document.getElementById('filterSelect').value
   let sorted = [...notes]
@@ -132,26 +127,11 @@ function closeNoteDialog() {
   document.getElementById('noteDialog').close()
 }
 
-function toggleTheme() {
-  const isDark = document.body.classList.toggle('dark-theme')
-  localStorage.setItem('theme', isDark ? 'dark' : 'light')
-  document.getElementById('themeToggleBtn').textContent = isDark ? '☀️' : '🌙'
-}
-
-function applyStoredTheme() {
-  if(localStorage.getItem('theme') === 'dark') {
-    document.body.classList.add('dark-theme')
-    document.getElementById('themeToggleBtn').textContent = '☀️'
-  }
-}
-
 document.addEventListener('DOMContentLoaded', function() {
-  applyStoredTheme()
   notes = loadNotes()
   renderNotes()
 
   document.getElementById('noteForm').addEventListener('submit', saveNote)
-  document.getElementById('themeToggleBtn').addEventListener('click', toggleTheme)
 
   document.getElementById('noteDialog').addEventListener('click', function(event) {
     if(event.target === this) {
@@ -159,9 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   })
 
-  // Search as you type
   document.getElementById('searchInput').addEventListener('input', searchNotes)
 
-  // Filter on change
   document.getElementById('filterSelect').addEventListener('change', filterNotes)
 })

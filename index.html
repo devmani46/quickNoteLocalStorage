@@ -6,26 +6,14 @@
   <title>Quick Notes</title>
   <link rel="stylesheet" href="style.css">
   <script src="app.js" defer></script>
-</head><body>
+</head>
+<body>
 
   <header>
     <h1>Quick Notes</h1>
     <div>
       <button class="add-note-btn" onclick="openNoteDialog()">+ Add Note</button>
-    </div>
-
-    <div class="search-filter-bar">
-      <div class="search-box">
-        <input type="text" id="searchInput" class="search-input" placeholder="Search notes...">
-        <button class="search-btn" onclick="searchNotes()">
-          🔍
-        </button>
-      </div>
-
-      <select id="filterSelect" class="filter-dropdown" onchange="filterNotes()">
-        <option value="newest">Newest First</option>
-        <option value="oldest">Oldest First</option>
-      </select>
+      <!-- <button id="themeToggleBtn" class="theme-toggle-btn">🌙</button> -->
     </div>
   </header>
 
